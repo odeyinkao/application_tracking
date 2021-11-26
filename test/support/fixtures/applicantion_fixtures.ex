@@ -11,7 +11,7 @@ defmodule ApplicationTracking.ApplicantionFixtures do
     {:ok, candidate} =
       attrs
       |> Enum.into(%{
-        email: "some email",
+        email: "some@email.com",
         name: "some name",
         status: "some status"
       })

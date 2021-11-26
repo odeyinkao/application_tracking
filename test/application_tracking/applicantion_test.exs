@@ -21,10 +21,10 @@ defmodule ApplicationTracking.ApplicantionTest do
     end
 
     test "create_candidate/1 with valid data creates a candidate" do
-      valid_attrs = %{email: "some email", name: "some name", status: "some status"}
+      valid_attrs = %{email: "some@email.com", name: "some name", status: "some status"}
 
       assert {:ok, %Candidate{} = candidate} = Applicantion.create_candidate(valid_attrs)
-      assert candidate.email == "some email"
+      assert candidate.email == "some@email.com"
       assert candidate.name == "some name"
       assert candidate.status == "some status"
     end
@@ -35,10 +35,10 @@ defmodule ApplicationTracking.ApplicantionTest do
 
     test "update_candidate/2 with valid data updates the candidate" do
       candidate = candidate_fixture()
-      update_attrs = %{email: "some updated email", name: "some updated name", status: "some updated status"}
+      update_attrs = %{email: "someupdated@email.com", name: "some updated name", status: "some updated status"}
 
       assert {:ok, %Candidate{} = candidate} = Applicantion.update_candidate(candidate, update_attrs)
-      assert candidate.email == "some updated email"
+      assert candidate.email == "someupdated@email.com"
       assert candidate.name == "some updated name"
       assert candidate.status == "some updated status"
     end
