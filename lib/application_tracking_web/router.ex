@@ -17,7 +17,8 @@ defmodule ApplicationTrackingWeb.Router do
   scope "/", ApplicationTrackingWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    # get "/", PageController, :index
+    live "/", LandingLive
   end
 
   # Other scopes may use custom stacks.
