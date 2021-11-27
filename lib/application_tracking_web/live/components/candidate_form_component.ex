@@ -17,7 +17,7 @@ defmodule ApplicationTrackingWeb.CandidateComponent do
         Candidate Application
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-          Provide details and click apply now. Apply once only.
+          Provide details and click apply now.
       </p>
     </div>
 

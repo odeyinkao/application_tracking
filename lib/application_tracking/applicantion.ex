@@ -21,6 +21,11 @@ defmodule ApplicationTracking.Applicantion do
     Repo.all(Candidate)
   end
 
+  def list_candidates(status) do
+    from(c in Candidate, where: c.status == ^status, order_by: [desc: c.id])
+      |> Repo.all()
+  end
+
   @doc """
   Gets a single candidate.
 
