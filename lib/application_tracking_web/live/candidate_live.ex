@@ -16,25 +16,6 @@ defmodule ApplicationTrackingWeb.CandidateLive do
     {:ok, socket } # temporary_assigns: [candidates: []]
   end
 
-  # def mount(_params, _session, socket) do
-  #   if connected?(socket) do
-  #     :timer.send_interval(1000, self(), :update)
-  #   end
-
-  #   labels = 1..12 |> Enum.to_list()
-
-  #   values = Enum.map(labels, fn _ -> get_reading() end)
-
-  #   {:ok,
-  #    assign(socket,
-  #      chart_data: %{
-  #        labels: labels,
-  #        values: values
-  #      },
-  #      current_reading: List.last(labels)
-  #    )}
-  # end
-
   def render(assigns) do
     ~H"""
       <!-- 3 column wrapper -->
