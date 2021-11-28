@@ -1,7 +1,7 @@
-defmodule ApplicationTracking.ApplicantionFixtures do
+defmodule ApplicationTracking.OperationFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `ApplicationTracking.Applicantion` context.
+  entities via the `ApplicationTracking.Operation` context.
   """
 
   @doc """
@@ -15,7 +15,7 @@ defmodule ApplicationTracking.ApplicantionFixtures do
         name: "some name",
         status: "some status"
       })
-      |> ApplicationTracking.Applicantion.create_candidate()
+      |> ApplicationTracking.Operation.create_candidate()
 
     candidate
   end

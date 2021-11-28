@@ -1,4 +1,4 @@
-defmodule ApplicationTracking.Applicantion.Candidate do
+defmodule ApplicationTracking.Operation.Candidate do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -6,6 +6,7 @@ defmodule ApplicationTracking.Applicantion.Candidate do
     field :email, :string
     field :name, :string
     field :status, :string, default: "Applied"
+    has_many :comments, ApplicationTracking.Operation.Comment
 
     timestamps()
   end

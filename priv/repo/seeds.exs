@@ -9,3 +9,6 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+
+ApplicationTracking.Accounts.register_user(%{ password: "rKMTxtAkf7F29aU", email: "odeyinkao@yahoo.com"})

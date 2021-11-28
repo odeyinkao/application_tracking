@@ -80,7 +80,7 @@ defmodule ApplicationTrackingWeb.Router do
     get "/users/register", UserRegistrationController, :new
     post "/users/register", UserRegistrationController, :create
 
-    live "/application", CandidateLive
+    live "/candidates", CandidateLive
   end
 
   scope "/", ApplicationTrackingWeb do

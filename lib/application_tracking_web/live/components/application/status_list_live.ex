@@ -7,8 +7,7 @@ defmodule ApplicationTrackingWeb.StatusListLive do
   end
 
   def render(assigns) do
-    IO.inspect(assigns.selected_status)
-
+    IO.inspect("Rendere Status")
     ~H"""
       <div class="border-b border-gray-200 xl:border-b-0 xl:flex-shrink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-white">
         <div class="h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0">
@@ -31,7 +30,7 @@ defmodule ApplicationTrackingWeb.StatusListLive do
 
   defp status_item(assigns) do
     ~L"""
-      <div class="relative flex items-start py-4">
+      <div class="relative flex items-start py-4" phx-click="status_selected"  phx-value-status="<%= @state %>">
         <div class="min-w-0 flex-1 text-sm">
           <label for="side-1" class="font-medium text-gray-700 select-none"><%= @state %></label>
         </div>
