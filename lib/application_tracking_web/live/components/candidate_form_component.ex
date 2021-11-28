@@ -1,11 +1,11 @@
 defmodule ApplicationTrackingWeb.CandidateComponent do
   use ApplicationTrackingWeb, :live_component
 
-  alias ApplicationTracking.Applicantion
-  alias ApplicationTracking.Applicantion.Candidate
+  alias ApplicationTracking.Operation
+  alias ApplicationTracking.Operation.Candidate
 
   def mount(socket) do
-    changeset = Applicantion.change_candidate(%Candidate{})
+    changeset = Operation.change_candidate(%Candidate{})
 
     {:ok, assign(socket, changeset: changeset)}
   end
@@ -17,7 +17,7 @@ defmodule ApplicationTrackingWeb.CandidateComponent do
         Candidate Application
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
-          Provide details and click apply now. Apply once only.
+          Provide details and click apply now.
       </p>
     </div>
 
@@ -60,9 +60,9 @@ defmodule ApplicationTrackingWeb.CandidateComponent do
   end
 
   def handle_event("save", %{"candidate" => params}, socket) do
-    case Applicantion.create_candidate(params) do
+    case Operation.create_candidate(params) do
       {:ok, _} ->
-        changeset = Applicantion.change_candidate(%Candidate{})
+        changeset = Operation.change_candidate(%Candidate{})
 
         # {:noreply, put_flash(socket, :info, "file #{uploaded_file.name} uploaded")}
         socket = socket
@@ -81,7 +81,7 @@ defmodule ApplicationTrackingWeb.CandidateComponent do
   def handle_event("validate", %{"candidate" => params}, socket) do
     changeset =
       %Candidate{}
-      |> Applicantion.change_candidate(params)
+      |> Operation.change_candidate(params)
       |> Map.put(:action, :insert)
 
     socket = assign(socket, changeset: changeset)
