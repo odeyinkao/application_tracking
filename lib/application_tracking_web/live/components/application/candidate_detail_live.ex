@@ -47,10 +47,17 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
                 </div>
                 <div class="sm:col-span-1">
                   <dt class="text-sm font-medium text-gray-500">
-                    Change Status
+                    Toggle Status
                   </dt>
                   <dd class="mt-1 text-sm text-gray-900">
-                    Todo: Drop Down here
+
+                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
+                      <%= for state <- @status  do %>
+                        <button phx-click="set-state" phx-target="<%= @myself %>" phx-value-state="<%= state %>" type="button" class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                          <%= state %>
+                        </button>
+                      <% end %>
+                    </span>
                   </dd>
                 </div>
               </dl>
@@ -86,7 +93,6 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
                   <%= f = form_for @changeset, "#",
                   class: "space-y-6",
                   phx_submit: "comment-submit",
-
                   phx_target: @myself %>
 
 
@@ -151,11 +157,16 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
     end
   end
 
+  def handle_event("set-state", %{"state" => state }, socket) do
+    IO.inspect("Here Now Sir")
+    comment_changes = %{"status" => state }
+
+    Operation.update_candidate(socket.assigns.selected_candidate, comment_changes)
+
+    {:noreply, socket}
+  end
 
   defp comment_item(assigns) do
-
-    # is_selected = !!assigns.candidate && "#{assigns.candidate.id}" ==  assigns.selected_candidate_id
-
     ~L"""
       <li>
         <div class="flex space-x-3">

@@ -6,12 +6,14 @@ defmodule ApplicationTrackingWeb.CandidateLive do
 
   def mount(_params, session, socket) do
     selected_status = "Applied"
+    status = ["Applied", "Interviewing", "Hired", "Passed"]
 
     socket = assign(socket,
     candidates: Operation.list_candidates(selected_status),
     selected_status: selected_status,
     selected_candidate_id: nil,
-    selected_candidate: nil)
+    selected_candidate: nil,
+    status: status)
 
     {:ok, assign_current_user(socket, session)}
     # {:ok, socket } # temporary_assigns: [candidates: []]
@@ -25,14 +27,14 @@ defmodule ApplicationTrackingWeb.CandidateLive do
         <!-- Left sidebar & main wrapper -->
 
         <%= live_component @socket, ApplicationTrackingWeb.StatusListLive,
-          selected_status: @selected_status, id: :status_list %>
+          selected_status: @selected_status, status: @status, id: :status_list %>
 
         <%= live_component @socket, ApplicationTrackingWeb.CandidateListLive,
           selected_status: @selected_status, selected_candidate_id: @selected_candidate_id, candidates: @candidates, id: :candidate_list %>
 
         <%= if @selected_candidate do %>
           <%= live_component @socket, ApplicationTrackingWeb.CandidateDetailLive,
-          current_user: current_user,  selected_candidate_id: @selected_candidate_id, selected_candidate: @selected_candidate, id: :candidate_details %>
+          current_user: current_user,  selected_candidate_id: @selected_candidate_id, selected_candidate: @selected_candidate, status: @status, id: :candidate_details %>
         <% end %>
 
       </div>
@@ -51,7 +53,6 @@ defmodule ApplicationTrackingWeb.CandidateLive do
   def handle_event("candidate_selected", %{"id" => id}, socket) do
 
     candidate = Operation.get_candidate_with_comment!(id);
-    IO.inspect(candidate)
 
     socket = assign(socket, selected_candidate_id: id, selected_candidate:  candidate )
 
