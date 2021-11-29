@@ -50,7 +50,7 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
                     Change Status
                   </dt>
                   <dd class="mt-1 text-sm text-gray-900">
-                    <%= @selected_candidate.email %>
+                    Todo: Drop Down here
                   </dd>
                 </div>
               </dl>
@@ -134,7 +134,7 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
     comment_changes = %{"body" => body, "candidate_id" => socket.assigns.selected_candidate_id, "user_id" => socket.assigns.current_user.id }
 
     case Operation.create_comment(comment_changes) do
-      {:ok, _} ->
+      {:ok, comment} ->
         changeset = Operation.change_comment(%Comment{})
 
         # {:noreply, put_flash(socket, :info, "file #{uploaded_file.name} uploaded")}
@@ -164,13 +164,13 @@ defmodule ApplicationTrackingWeb.CandidateDetailLive do
           </div>
           <div>
             <div class="text-sm">
-              <a href="#" class="font-medium text-gray-900">Leslie Alexander</a>
+              <a href="#" class="font-medium text-gray-900"><%= @comment.user.email %></a>
             </div>
             <div class="mt-1 text-sm text-gray-700">
               <p><%= @comment.body%></p>
             </div>
             <div class="mt-2 text-sm space-x-2">
-              <span class="text-gray-500 font-medium">4d ago</span>
+              <span class="text-gray-500 font-medium"><%= to_string(@comment.inserted_at) %></span>
               <span class="text-gray-500 font-medium">&middot;</span>
             </div>
           </div>
