@@ -1,13 +1,7 @@
 defmodule ApplicationTrackingWeb.StatusListLive do
   use ApplicationTrackingWeb, :live_component
 
-
-  def mount(socket) do
-    {:ok, assign(socket, status: ["Applied", "Interviewing", "Hired", "Passed"])}
-  end
-
   def render(assigns) do
-    IO.inspect("Rendere Status")
     ~H"""
       <div class="border-b border-gray-200 xl:border-b-0 xl:flex-shrink-0 xl:w-64 xl:border-r xl:border-gray-200 bg-white">
         <div class="h-full pl-4 pr-6 py-6 sm:pl-6 lg:pl-8 xl:pl-0">

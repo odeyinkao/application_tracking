@@ -64,7 +64,6 @@ defmodule ApplicationTrackingWeb.CandidateComponent do
       {:ok, _} ->
         changeset = Operation.change_candidate(%Candidate{})
 
-        # {:noreply, put_flash(socket, :info, "file #{uploaded_file.name} uploaded")}
         socket = socket
                     |> assign( changeset: changeset)
                     |> put_flash(:info, "Your Application Successfully Created")

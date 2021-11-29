@@ -47,6 +47,8 @@ defmodule ApplicationTrackingWeb do
       use Phoenix.LiveView,
         layout: {ApplicationTrackingWeb.LayoutView, "live.html"}
 
+        import ApplicationTrackingWeb.LiveHelpers
+
       unquote(view_helpers())
     end
   end
