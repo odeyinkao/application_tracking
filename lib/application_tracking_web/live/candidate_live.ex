@@ -4,7 +4,7 @@ defmodule ApplicationTrackingWeb.CandidateLive do
   alias ApplicationTracking.Operation
 
 
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
     selected_status = "Applied"
 
     socket = assign(socket,
@@ -13,10 +13,12 @@ defmodule ApplicationTrackingWeb.CandidateLive do
     selected_candidate_id: nil,
     selected_candidate: nil)
 
-    {:ok, socket } # temporary_assigns: [candidates: []]
+    {:ok, assign_current_user(socket, session)}
+    # {:ok, socket } # temporary_assigns: [candidates: []]
   end
 
   def render(assigns) do
+     current_user = assigns[:current_user]
     ~H"""
       <!-- 3 column wrapper -->
       <div class="flex-grow w-full max-w-7xl mx-auto xl:px-8 lg:flex">
@@ -28,8 +30,10 @@ defmodule ApplicationTrackingWeb.CandidateLive do
         <%= live_component @socket, ApplicationTrackingWeb.CandidateListLive,
           selected_status: @selected_status, selected_candidate_id: @selected_candidate_id, candidates: @candidates, id: :candidate_list %>
 
-        <%= live_component @socket, ApplicationTrackingWeb.CandidateDetailLive,
-          selected_candidate: @selected_candidate, id: :candidate_details %>
+        <%= if @selected_candidate do %>
+          <%= live_component @socket, ApplicationTrackingWeb.CandidateDetailLive,
+          current_user: current_user,  selected_candidate_id: @selected_candidate_id, selected_candidate: @selected_candidate, id: :candidate_details %>
+        <% end %>
 
       </div>
 

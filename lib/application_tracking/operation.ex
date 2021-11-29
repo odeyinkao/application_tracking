@@ -43,9 +43,11 @@ defmodule ApplicationTracking.Operation do
   def get_candidate!(id), do: Repo.get!(Candidate, id)
 
   def get_candidate_with_comment!(id) do
+
     Candidate
     |> Repo.get!(id)
-    |> Repo.preload(:comments)
+    |> Repo.preload([ comments: [ :user ]])
+
   end
 
   @doc """
